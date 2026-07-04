@@ -19,10 +19,11 @@ export const siteConfig = {
     invertedClassName: "h-10 w-auto brightness-100 md:h-11",
   },
   navigation: [
+    { label: "Home", href: "/" },
     { label: "Events", href: "#events" },
     {
       label: "What's on Bali?",
-      href: "#all",
+      href: "/all",
       icon: "sparkles",
       labelClassName:
         "bg-[length:200%_auto] bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-orange-400 to-amber-200 animate-gradient-x",

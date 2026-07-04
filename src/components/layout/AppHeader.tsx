@@ -36,7 +36,7 @@ export function AppHeader() {
     <header
       className={clsx(
         "site-header fixed inset-x-0 top-0 z-50 border-b backdrop-blur-xl backdrop-saturate-150",
-        isScrolled ? "theme-header" : "theme-header-transparent",
+        isScrolled ? "theme-header" : "theme-header",
       )}
       id="top"
     >
@@ -45,7 +45,7 @@ export function AppHeader() {
         className="page-container flex h-16 items-center justify-between gap-6"
       >
         <div className="flex items-center gap-10">
-          <Link aria-label={siteConfig.name} className="flex items-center" href="#top">
+          <Link aria-label={siteConfig.name} className="flex items-center" href="/">
             <Image
               alt={siteConfig.logo.alt}
               className={siteConfig.logo.invertedClassName}

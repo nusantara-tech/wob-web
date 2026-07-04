@@ -1,7 +1,9 @@
 import { Button, InputGroup } from "@heroui/react";
+import Image from "next/image";
 import Link from "next/link";
 
 import { Icon } from "@/components/common/Icon";
+import { siteConfig } from "@/config/site";
 
 const footerGroups = [
   {
@@ -20,10 +22,17 @@ export function SiteFooter() {
       <div className="page-container grid gap-10 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <Link
-            className="font-display mb-5 block text-2xl font-bold"
+            aria-label={siteConfig.name}
+            className="mb-5 inline-flex items-center"
             href="#top"
           >
-            What&apos;s On Bali
+            <Image
+              alt={siteConfig.logo.alt}
+              className="h-12 w-auto brightness-100"
+              height={siteConfig.logo.height}
+              src={siteConfig.logo.src}
+              width={siteConfig.logo.width}
+            />
           </Link>
           <p className="max-w-sm text-xs leading-6 text-white/60">
             The island&apos;s curated guide to exclusive events, retreats,
