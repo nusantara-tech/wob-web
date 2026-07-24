@@ -7,7 +7,7 @@ export const bottomNavigation: {
   activePath?: string;
 }[] = [
   { label: "Home", href: "#top", icon: "home" },
-  { label: "Events", href: "#events", icon: "calendar" },
+  { label: "Events", href: "/events", icon: "calendar", activePath: "/events" },
   { label: "Explore", href: "/all", icon: "compass", activePath: "/all" },
   { label: "Deals", href: "#deals", icon: "ticket" },
   { label: "Profile", href: "#top", icon: "user" },

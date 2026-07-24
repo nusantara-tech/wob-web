@@ -20,7 +20,7 @@ export const siteConfig = {
   },
   navigation: [
     { label: "Home", href: "/" },
-    { label: "Events", href: "#events" },
+    { label: "Events", href: "/events" },
     {
       label: "What's on Bali?",
       href: "/all",

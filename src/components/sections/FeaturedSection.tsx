@@ -12,6 +12,7 @@ export function FeaturedSection() {
         description="100+ verified organizers and secure checkout"
         title="Upcoming Events in Bali"
         linkLabel="View All"
+        linkHref="/events"
       />
       <div className="grid gap-6 sm:grid-cols-3 lg:grid-cols-6">
         {events.map((event) => (
