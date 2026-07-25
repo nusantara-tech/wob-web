@@ -11,7 +11,7 @@ export function PromotionSection() {
           title="Hot Deals"
           linkLabel="View All"
         />
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-3">
           {deals.map((deal) => (
             <DealCard deal={deal} key={deal.id} />
           ))}

@@ -35,8 +35,8 @@ export function AppHeader() {
   return (
     <header
       className={clsx(
-        "site-header fixed inset-x-0 top-0 z-50 border-b backdrop-blur-xl backdrop-saturate-150",
-        isScrolled ? "theme-header" : "theme-header",
+        "site-header fixed inset-x-0 top-0 z-50 border-b backdrop-blur-xl backdrop-saturate-150 transition-all duration-500",
+        isScrolled ? "theme-header" : "theme-header-transparent",
       )}
       id="top"
     >
@@ -59,7 +59,10 @@ export function AppHeader() {
             {siteConfig.navigation.map((item) => (
               <Link
                 className={clsx(
-                  "flex items-center text-sm font-medium text-white/88 transition-colors hover:text-white",
+                  "flex items-center text-sm font-medium transition-colors",
+                  isScrolled
+                    ? "text-white/88 hover:text-white"
+                    : "text-slate-700 hover:text-brand dark:text-white/88 dark:hover:text-white",
                   item.linkClassName,
                 )}
                 href={item.href}
@@ -77,7 +80,12 @@ export function AppHeader() {
           </Button>
           <Button
             aria-label="Open menu"
-            className="inline-flex border border-white/10 bg-white/10 text-white hover:bg-white/15 lg:hidden"
+            className={clsx(
+              "inline-flex border lg:hidden",
+              isScrolled
+                ? "border-white/10 bg-white/10 text-white hover:bg-white/15"
+                : "border-blue-100 bg-white/70 text-brand shadow-sm hover:bg-white dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:bg-white/15",
+            )}
             size="sm"
             variant="ghost"
             onPress={() => setIsMenuOpen(true)}

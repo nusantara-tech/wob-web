@@ -15,7 +15,7 @@ export function DirectorySection() {
           linkLabel="View All"
           title="Directory in Bali"
         />
-        <div className="grid gap-6 md:grid-cols-4">
+        <div className="grid gap-5 md:grid-cols-4">
           {directories.map((item) => (
             <DirectoryCard item={item} key={item.id} />
           ))}

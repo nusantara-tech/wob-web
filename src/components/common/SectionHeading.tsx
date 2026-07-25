@@ -14,7 +14,7 @@ export function SectionHeading({
   linkHref = "#",
 }: SectionHeadingProps) {
   return (
-    <div className="mb-8 flex items-end justify-between gap-6">
+    <div className="mb-6 flex items-end justify-between gap-5">
       <div>
         <h2 className="font-display text-2xl font-bold tracking-tight text-ink">
           {title}
