@@ -4,7 +4,7 @@ import { deals } from "@/data/promotions";
 
 export function PromotionSection() {
   return (
-    <section className="section-spacing bg-soft" id="deals">
+    <section className="section-spacing theme-surface" id="deals">
       <div className="page-container">
         <SectionHeading
           description="Limited-time offers for the biggest Bali fans."

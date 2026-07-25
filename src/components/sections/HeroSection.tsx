@@ -32,7 +32,7 @@ export function HeroSection() {
   const [activeCategory, setActiveCategory] = useState(categories[0]);
 
   return (
-    <section className="hero-section relative overflow-hidden bg-page pb-1.5 pt-18 sm:pb-2 sm:pt-20">
+    <section className="hero-section theme-surface relative overflow-hidden pb-1.5 pt-18 sm:pb-2 sm:pt-20">
       <div className="page-container relative z-10 space-y-2.5 sm:space-y-3">
         <HeroPromoCarousel />
 

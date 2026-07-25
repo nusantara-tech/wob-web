@@ -13,19 +13,19 @@ export default function HomePage() {
       <AppHeader />
       <main>
         <HeroSection />
-        <ScrollReveal distance="sm">
+        <ScrollReveal>
           <FeaturedSection />
         </ScrollReveal>
         <ScrollReveal>
           <DirectorySection />
         </ScrollReveal>
-        <ScrollReveal distance="sm">
+        <ScrollReveal>
           <PromotionSection />
         </ScrollReveal>
         <ScrollReveal>
           <BrowseAreaSection />
         </ScrollReveal>
-        <ScrollReveal distance="sm">
+        <ScrollReveal>
           <TrustSection />
         </ScrollReveal>
       </main>
