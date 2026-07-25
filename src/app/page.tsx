@@ -1,7 +1,6 @@
 import { AppHeader } from "@/components/layout/AppHeader";
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import { BrowseAreaSection } from "@/components/sections/BrowseAreaSection";
-import { CategoryFilter } from "@/components/sections/CategoryFilter";
 import { DirectorySection } from "@/components/sections/DirectorySection";
 import { FeaturedSection } from "@/components/sections/FeaturedSection";
 import { HeroSection } from "@/components/sections/HeroSection";
@@ -14,14 +13,13 @@ export default function HomePage() {
       <AppHeader />
       <main>
         <HeroSection />
-        <CategoryFilter />
-        <ScrollReveal>
+        <ScrollReveal distance="sm">
           <FeaturedSection />
         </ScrollReveal>
         <ScrollReveal>
           <DirectorySection />
         </ScrollReveal>
-        <ScrollReveal distance="lg">
+        <ScrollReveal distance="sm">
           <PromotionSection />
         </ScrollReveal>
         <ScrollReveal>

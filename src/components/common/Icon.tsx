@@ -2,14 +2,20 @@ import type { ReactNode, SVGProps } from "react";
 
 export type IconName =
   | "arrowDown"
+  | "arrowLeft"
+  | "arrowRight"
+  | "bell"
   | "calendar"
   | "check"
   | "compass"
+  | "heart"
   | "home"
   | "location"
   | "mail"
   | "menu"
   | "moon"
+  | "music"
+  | "palette"
   | "search"
   | "shield"
   | "sparkles"
@@ -17,6 +23,7 @@ export type IconName =
   | "support"
   | "sun"
   | "ticket"
+  | "utensils"
   | "user";
 
 interface IconProps extends SVGProps<SVGSVGElement> {
@@ -25,6 +32,14 @@ interface IconProps extends SVGProps<SVGSVGElement> {
 
 const paths: Record<IconName, ReactNode> = {
   arrowDown: <path d="m6 9 6 6 6-6" />,
+  arrowLeft: <path d="M19 12H5m6-6-6 6 6 6" />,
+  arrowRight: <path d="M5 12h14m-6-6 6 6-6 6" />,
+  bell: (
+    <>
+      <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z" />
+      <path d="M10 21h4" />
+    </>
+  ),
   calendar: (
     <>
       <path d="M8 2v4M16 2v4M3 10h18" />
@@ -37,6 +52,9 @@ const paths: Record<IconName, ReactNode> = {
       <circle cx="12" cy="12" r="9" />
       <path d="m15.5 8.5-2 5-5 2 2-5 5-2Z" />
     </>
+  ),
+  heart: (
+    <path d="M20.8 5.6a5.2 5.2 0 0 0-7.4 0L12 7l-1.4-1.4a5.2 5.2 0 1 0-7.4 7.4L12 21.8l8.8-8.8a5.2 5.2 0 0 0 0-7.4Z" />
   ),
   home: (
     <>
@@ -64,6 +82,22 @@ const paths: Record<IconName, ReactNode> = {
     </>
   ),
   moon: <path d="M20.5 15.5A8.5 8.5 0 0 1 8.5 3.5a8.5 8.5 0 1 0 12 12Z" />,
+  music: (
+    <>
+      <path d="M9 18V5l10-2v13" />
+      <circle cx="6" cy="18" r="3" />
+      <circle cx="16" cy="16" r="3" />
+    </>
+  ),
+  palette: (
+    <>
+      <path d="M12 22a10 10 0 1 1 10-10c0 1.7-1.3 3-3 3h-1.5a2 2 0 0 0-1.7 3l.2.4c.8 1.6-.4 3.6-2.2 3.6H12Z" />
+      <circle cx="7.5" cy="10.5" r=".7" />
+      <circle cx="10.5" cy="7.5" r=".7" />
+      <circle cx="14.5" cy="7.5" r=".7" />
+      <circle cx="16.5" cy="11" r=".7" />
+    </>
+  ),
   search: (
     <>
       <circle cx="11" cy="11" r="7" />
@@ -101,6 +135,12 @@ const paths: Record<IconName, ReactNode> = {
     </>
   ),
   ticket: <path d="M3 8a2 2 0 0 0 0 4v5h18v-5a2 2 0 0 0 0-4V3H3v5Zm7-5v14" />,
+  utensils: (
+    <>
+      <path d="M4 3v8M8 3v8M4 7h4M6 11v10" />
+      <path d="M15 3v18M15 3c3 1 5 4 5 8h-5" />
+    </>
+  ),
   user: (
     <>
       <circle cx="12" cy="8" r="4" />

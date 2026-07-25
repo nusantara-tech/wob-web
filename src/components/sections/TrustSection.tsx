@@ -24,11 +24,11 @@ const trustItems: {
 
 export function TrustSection() {
   return (
-    <section className="theme-muted border-t border-slate-200 py-12">
-      <div className="page-container grid gap-9 text-center md:grid-cols-3">
+    <section className="theme-muted border-t border-slate-200 py-4">
+      <div className="page-container grid gap-7 text-center md:grid-cols-3">
         {trustItems.map((item) => (
           <div className="flex flex-col items-center" key={item.title}>
-            <Icon className="mb-3 size-9 text-brand" name={item.icon} />
+            <Icon className="mb-2.5 size-8 text-brand" name={item.icon} />
             <h2 className="text-sm font-bold uppercase tracking-wider">
               {item.title}
             </h2>

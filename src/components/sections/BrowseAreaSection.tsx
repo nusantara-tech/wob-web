@@ -13,7 +13,7 @@ export function BrowseAreaSection() {
           linkLabel="All Areas"
           title="Browse by Area"
         />
-        <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
           {areas.map((area) => (
             <Link
               className="group text-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
@@ -29,7 +29,7 @@ export function BrowseAreaSection() {
                   src={area.image}
                 />
               </div>
-              <h3 className="mt-3 text-sm font-bold transition-colors group-hover:text-brand">
+              <h3 className="mt-2.5 text-sm font-bold transition-colors group-hover:text-brand">
                 {area.name}
               </h3>
               <p className="mt-0.5 text-[10px] uppercase tracking-wide text-copy">
