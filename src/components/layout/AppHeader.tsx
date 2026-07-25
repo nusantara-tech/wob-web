@@ -7,7 +7,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { Icon } from "@/components/common/Icon";
-import { ThemeSwitch } from "@/components/common/ThemeSwitch";
 import { siteConfig } from "@/config/site";
 
 export function AppHeader() {
@@ -27,8 +26,16 @@ export function AppHeader() {
     item: (typeof siteConfig.navigation)[number],
   ) => (
     <>
+      {item.icon ? (
+        <Icon
+          className={clsx(
+            "size-4 shrink-0 text-current",
+            item.iconClassName,
+          )}
+          name={item.icon}
+        />
+      ) : null}
       <span className={item.labelClassName}>{item.label}</span>
-      {item.icon ? <Icon className={item.iconClassName} name={item.icon} /> : null}
     </>
   );
 
@@ -55,14 +62,14 @@ export function AppHeader() {
               width={siteConfig.logo.width}
             />
           </Link>
-          <div className="hidden items-center gap-7 lg:flex">
+          <div className="hidden items-center gap-2 lg:flex">
             {siteConfig.navigation.map((item) => (
               <Link
                 className={clsx(
-                  "flex items-center text-sm font-medium transition-colors",
+                  "flex min-h-9 items-center gap-2 rounded-full px-3 text-sm font-semibold transition-colors",
                   isScrolled
-                    ? "text-white/88 hover:text-white"
-                    : "text-slate-700 hover:text-brand dark:text-white/88 dark:hover:text-white",
+                    ? "text-slate-700 hover:bg-blue-50 hover:text-brand"
+                    : "text-slate-700 hover:bg-white/70 hover:text-brand",
                   item.linkClassName,
                 )}
                 href={item.href}
@@ -73,18 +80,36 @@ export function AppHeader() {
             ))}
           </div>
         </div>
-        <div className="flex items-center gap-1 sm:gap-3">
-          <ThemeSwitch />
-          <Button className="hidden sm:inline-flex" size="sm" variant="primary">
-            Sign In
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <Button
+            className="hidden rounded-full px-4 sm:inline-flex"
+            size="sm"
+            variant="primary"
+          >
+            <Icon className="size-4" name="user" />
+            Login
+          </Button>
+          <Button
+            isIconOnly
+            aria-label="Open notifications"
+            className={clsx(
+              "inline-flex border lg:hidden",
+              isScrolled
+                ? "border-slate-200 bg-white/80 text-slate-700 hover:bg-blue-50 hover:text-brand"
+                : "border-blue-100 bg-white/70 text-brand shadow-sm hover:bg-white",
+            )}
+            size="sm"
+            variant="ghost"
+          >
+            <Icon className="size-4.5" name="bell" />
           </Button>
           <Button
             aria-label="Open menu"
             className={clsx(
               "inline-flex border lg:hidden",
               isScrolled
-                ? "border-white/10 bg-white/10 text-white hover:bg-white/15"
-                : "border-blue-100 bg-white/70 text-brand shadow-sm hover:bg-white dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:bg-white/15",
+                ? "border-slate-200 bg-white/80 text-slate-700 hover:bg-blue-50 hover:text-brand"
+                : "border-blue-100 bg-white/70 text-brand shadow-sm hover:bg-white",
             )}
             size="sm"
             variant="ghost"
@@ -100,11 +125,11 @@ export function AppHeader() {
         onOpenChange={setIsMenuOpen}
       >
         <Drawer.Content placement="right">
-          <Drawer.Dialog className="border-l border-white/10 bg-[#191c1e] text-white shadow-2xl">
-            <Drawer.CloseTrigger className="text-white/80 hover:text-white" />
+          <Drawer.Dialog className="border-l border-slate-200 bg-white text-ink shadow-2xl">
+            <Drawer.CloseTrigger className="text-slate-500 hover:text-brand" />
             <Drawer.Header>
-              <Drawer.Heading className="text-base font-semibold">
-                Navigation
+              <Drawer.Heading className="text-base font-bold">
+                Menu
               </Drawer.Heading>
             </Drawer.Header>
             <Drawer.Body>
@@ -112,7 +137,7 @@ export function AppHeader() {
                 {siteConfig.navigation.map((item) => (
                   <Link
                     className={clsx(
-                      "flex min-h-12 items-center rounded-xl px-3 text-sm font-medium text-white/82 transition-colors hover:bg-white/10 hover:text-white",
+                      "flex min-h-12 items-center gap-3 rounded-xl px-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-blue-50 hover:text-brand",
                       item.linkClassName,
                     )}
                     href={item.href}
@@ -125,8 +150,9 @@ export function AppHeader() {
               </nav>
             </Drawer.Body>
             <Drawer.Footer>
-              <Button className="w-full" size="sm" variant="primary">
-                Sign In
+              <Button className="w-full rounded-full" size="sm" variant="primary">
+                <Icon className="size-4" name="user" />
+                Login
               </Button>
             </Drawer.Footer>
           </Drawer.Dialog>

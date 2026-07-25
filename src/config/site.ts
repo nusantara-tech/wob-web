@@ -13,14 +13,15 @@ export const siteConfig = {
   name: "What's On Bali",
   logo: {
     src: "/logo.png",
+    src_light: "/logo-light.png",
     alt: "What's On Bali",
     width: 3543,
     height: 1747,
     invertedClassName: "h-10 w-auto brightness-100 md:h-11",
   },
   navigation: [
-    { label: "Home", href: "/" },
-    { label: "Events", href: "/events" },
+    { label: "Home", href: "/", icon: "home" },
+    { label: "Events", href: "/events", icon: "calendar" },
     {
       label: "What's on Bali?",
       href: "/all",
@@ -31,7 +32,7 @@ export const siteConfig = {
         "size-3 text-amber-400 animate-pulse transition-transform group-hover/wob:scale-125",
       linkClassName: "group/wob gap-1.5",
     },
-    { label: "Directory", href: "#directory" },
-    { label: "Hot Deals", href: "#deals" },
+    { label: "Directory", href: "#directory", icon: "compass" },
+    { label: "Hot Deals", href: "#deals", icon: "ticket" },
   ] satisfies readonly NavigationItem[],
 } as const;

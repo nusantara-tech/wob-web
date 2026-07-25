@@ -19,7 +19,7 @@ export default function HomePage() {
         <ScrollReveal>
           <DirectorySection />
         </ScrollReveal>
-        <ScrollReveal distance="lg">
+        <ScrollReveal distance="sm">
           <PromotionSection />
         </ScrollReveal>
         <ScrollReveal>

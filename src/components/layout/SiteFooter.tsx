@@ -30,7 +30,7 @@ export function SiteFooter() {
               alt={siteConfig.logo.alt}
               className="h-12 w-auto brightness-100"
               height={siteConfig.logo.height}
-              src={siteConfig.logo.src}
+              src={siteConfig.logo.src_light}
               width={siteConfig.logo.width}
             />
           </Link>

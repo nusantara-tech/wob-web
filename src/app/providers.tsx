@@ -1,7 +1,6 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { ThemeProvider } from "next-themes";
 
 interface ProvidersProps {
   children: ReactNode;
@@ -12,13 +11,5 @@ interface ProvidersProps {
  * This boundary remains available for future client-side providers.
  */
 export function Providers({ children }: ProvidersProps) {
-  return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="light"
-      disableTransitionOnChange={false}
-    >
-      {children}
-    </ThemeProvider>
-  );
+  return children;
 }
