@@ -4,7 +4,7 @@ import { Button, SearchField } from "@heroui/react";
 import { useState } from "react";
 
 import { HeroPromoCarousel } from "@/components/common/HeroPromoCarousel";
-import { Icon } from "@/components/common/Icon";
+import { Icon, type IconName } from "@/components/common/Icon";
 
 const categories = [
   "Semua",
@@ -16,6 +16,17 @@ const categories = [
   "Promo",
   "Area Populer",
 ];
+
+const categoryIcons: Record<(typeof categories)[number], IconName> = {
+  Semua: "sparkles",
+  Event: "calendar",
+  "Beach Club": "sun",
+  Wellness: "heart",
+  Dining: "utensils",
+  Workshop: "palette",
+  Promo: "ticket",
+  "Area Populer": "compass",
+};
 
 export function HeroSection() {
   const [activeCategory, setActiveCategory] = useState(categories[0]);
@@ -72,9 +83,10 @@ export function HeroSection() {
                   variant={isActive ? "primary" : "ghost"}
                   onPress={() => setActiveCategory(category)}
                 >
-                  {category === "Semua" ? (
-                    <Icon className="size-3.5" name="sparkles" />
-                  ) : null}
+                  <Icon
+                    className="size-3.5 shrink-0"
+                    name={categoryIcons[category]}
+                  />
                   {category}
                 </Button>
               );

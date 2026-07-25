@@ -24,7 +24,7 @@ const trustItems: {
 
 export function TrustSection() {
   return (
-    <section className="theme-muted border-t border-slate-200 py-10">
+    <section className="theme-muted border-t border-slate-200 py-4">
       <div className="page-container grid gap-7 text-center md:grid-cols-3">
         {trustItems.map((item) => (
           <div className="flex flex-col items-center" key={item.title}>
