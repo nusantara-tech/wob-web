@@ -5,7 +5,7 @@ import { directories } from "@/data/directories";
 export function DirectorySection() {
   return (
     <section
-      className="section-spacing border-y border-slate-200/60 bg-page"
+      className="section-spacing theme-surface"
       id="directory"
     >
       <div className="page-container">
