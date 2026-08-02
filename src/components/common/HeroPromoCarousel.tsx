@@ -137,7 +137,7 @@ export function HeroPromoCarousel() {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="relative overflow-hidden rounded-[1.4rem] border border-white/70 bg-white shadow-[0_18px_50px_rgb(15_23_42_/_8%)] dark:border-white/10 dark:bg-white/5 sm:rounded-[1.75rem]">
+      <div className="relative overflow-hidden rounded-[1.4rem] border border-white/70 bg-white sm:rounded-[1.75rem]">
         <div
           className="hero-promo-track relative h-[172px] cursor-grab overflow-hidden active:cursor-grabbing sm:h-[232px] lg:h-[284px]"
           onPointerCancel={() => {

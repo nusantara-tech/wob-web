@@ -32,11 +32,16 @@ export function HeroSection() {
   const [activeCategory, setActiveCategory] = useState(categories[0]);
 
   return (
-    <section className="hero-section theme-surface relative overflow-hidden pb-1.5 pt-18 sm:pb-2 sm:pt-20">
-      <div className="page-container relative z-10 space-y-2.5 sm:space-y-3">
-        <HeroPromoCarousel />
+    <>
+      <section className="hero-section theme-surface relative overflow-hidden pb-1.5 pt-18 sm:pb-2 sm:pt-20">
+        <div className="page-container relative z-10">
+          <HeroPromoCarousel />
+        </div>
+      </section>
 
-        <div className="hero-discovery sticky top-16 z-30 rounded-[1.4rem] border p-2 backdrop-blur sm:rounded-[1.75rem] sm:p-2.5">
+      <div className="sticky top-16 z-40 bg-white py-2 backdrop-blur dark:bg-surface/90">
+        <div className="page-container">
+          <div className="hero-discovery rounded-[1.4rem] border p-2 sm:rounded-[1.75rem] sm:p-2.5">
           <SearchField
             fullWidth
             aria-label="Cari produk atau item"
@@ -92,8 +97,9 @@ export function HeroSection() {
               );
             })}
           </div>
+          </div>
         </div>
       </div>
-    </section>
+    </>
   );
 }
