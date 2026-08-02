@@ -22,6 +22,13 @@ export function AppHeader() {
     return () => window.removeEventListener("scroll", updateHeaderState);
   }, []);
 
+  const handleJoinPartnerPress = () => {
+    setIsMenuOpen(false);
+    document
+      .getElementById("partner-program")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   const renderNavigationItemContent = (
     item: (typeof siteConfig.navigation)[number],
   ) => (
@@ -81,6 +88,20 @@ export function AppHeader() {
           </div>
         </div>
         <div className="flex items-center gap-1.5 sm:gap-2">
+          <Button
+            className={clsx(
+              "hidden rounded-full px-4 font-bold sm:inline-flex",
+              isScrolled
+                ? "border border-blue-100 bg-blue-50 text-brand hover:bg-blue-100"
+                : "bg-brand text-white shadow-sm hover:bg-brand/90",
+            )}
+            size="sm"
+            variant={isScrolled ? "ghost" : "primary"}
+            onPress={handleJoinPartnerPress}
+          >
+            <Icon className="size-4" name="sparkles" />
+            Join Partner
+          </Button>
           <Button
             className="hidden rounded-full px-4 sm:inline-flex"
             size="sm"
@@ -149,8 +170,17 @@ export function AppHeader() {
                 ))}
               </nav>
             </Drawer.Body>
-            <Drawer.Footer>
-              <Button className="w-full rounded-full" size="sm" variant="primary">
+            <Drawer.Footer className="flex flex-col gap-2">
+              <Button
+                className="w-full rounded-full font-bold"
+                size="sm"
+                variant="primary"
+                onPress={handleJoinPartnerPress}
+              >
+                <Icon className="size-4" name="sparkles" />
+                Join Partner
+              </Button>
+              <Button className="w-full rounded-full" size="sm" variant="outline">
                 <Icon className="size-4" name="user" />
                 Login
               </Button>

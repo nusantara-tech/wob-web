@@ -45,10 +45,3 @@ export interface HeroPromotion {
   image: string;
   imageAlt: string;
 }
-
-export interface AreaItem {
-  id: string;
-  name: string;
-  tagline: string;
-  image: string;
-}

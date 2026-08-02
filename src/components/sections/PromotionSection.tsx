@@ -2,6 +2,8 @@ import { DealCard } from "@/components/common/DealCard";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { deals } from "@/data/promotions";
 
+const featuredDeals = deals.slice(0, 4);
+
 export function PromotionSection() {
   return (
     <section className="section-spacing theme-surface" id="deals">
@@ -11,8 +13,8 @@ export function PromotionSection() {
           title="Hot Deals"
           linkLabel="View All"
         />
-        <div className="grid gap-5 md:grid-cols-3">
-          {deals.map((deal) => (
+        <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
+          {featuredDeals.map((deal) => (
             <DealCard deal={deal} key={deal.id} />
           ))}
         </div>

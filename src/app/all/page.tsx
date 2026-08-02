@@ -288,7 +288,7 @@ export default async function AllResultsPage({
         </aside>
 
         <section className="min-w-0 flex-1">
-          <div className="sticky top-16 z-30 bg-background pb-6 pt-4 lg:top-[88px]">
+          <div className="sticky top-16 z-30 bg-background pb-6 pt-4">
             <div className="flex flex-col gap-3">
               <SearchField aria-label="Search all results" fullWidth>
                 <SearchField.Group className="h-16 rounded-2xl border border-slate-200/80 bg-white shadow-sm dark:border-border dark:bg-surface-secondary">

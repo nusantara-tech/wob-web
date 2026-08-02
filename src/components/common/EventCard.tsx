@@ -16,7 +16,8 @@ export function EventCard({ event }: EventCardProps) {
           alt={event.title}
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 17vw"
+          loading="eager"
           src={event.image}
         />
         <div className="absolute left-3 top-3 rounded-lg bg-white/95 px-2.5 py-1 text-center shadow-md backdrop-blur">

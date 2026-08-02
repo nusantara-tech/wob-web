@@ -22,6 +22,8 @@ export const siteConfig = {
   navigation: [
     { label: "Home", href: "/", icon: "home" },
     { label: "Events", href: "/events", icon: "calendar" },
+    { label: "Directory", href: "/directory", icon: "compass" },
+    { label: "Hot Deals", href: "#deals", icon: "ticket" },
     {
       label: "What's on Bali?",
       href: "/all",
@@ -32,7 +34,5 @@ export const siteConfig = {
         "size-3 text-amber-400 animate-pulse transition-transform group-hover/wob:scale-125",
       linkClassName: "group/wob gap-1.5",
     },
-    { label: "Directory", href: "#directory", icon: "compass" },
-    { label: "Hot Deals", href: "#deals", icon: "ticket" },
   ] satisfies readonly NavigationItem[],
 } as const;

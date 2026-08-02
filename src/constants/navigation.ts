@@ -6,7 +6,7 @@ export const bottomNavigation: {
   icon: IconName;
   activePath?: string;
 }[] = [
-  { label: "Home", href: "#top", icon: "home" },
+  { label: "Home", href: "/", icon: "home" },
   { label: "Events", href: "/events", icon: "calendar", activePath: "/events" },
   { label: "Explore", href: "/all", icon: "compass", activePath: "/all" },
   { label: "Deals", href: "#deals", icon: "ticket" },
