@@ -36,7 +36,7 @@ export function HeroSection() {
       <div className="page-container relative z-10 space-y-2.5 sm:space-y-3">
         <HeroPromoCarousel />
 
-        <div className="hero-discovery rounded-[1.4rem] border p-2 sm:rounded-[1.75rem] sm:p-2.5">
+        <div className="hero-discovery sticky top-16 z-30 rounded-[1.4rem] border p-2 backdrop-blur sm:rounded-[1.75rem] sm:p-2.5">
           <SearchField
             fullWidth
             aria-label="Cari produk atau item"
