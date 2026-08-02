@@ -15,6 +15,13 @@ Format mengikuti [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) dan ve
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-08-02
+
+### Added
+
+- Menambahkan loading skeleton pada hero promo carousel sampai gambar selesai dimuat.
+- Menambahkan loading skeleton saat tombol `Muat Lebih Banyak` digunakan di event, directory, deals, dan all results.
+
 ## [0.1.1] - 2026-08-02
 
 ### Added

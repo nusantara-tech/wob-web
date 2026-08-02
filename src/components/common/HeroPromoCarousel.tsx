@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@heroui/react";
+import { Button, Skeleton } from "@heroui/react";
 import Image from "next/image";
 import type { CSSProperties, PointerEvent, TouchEvent } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -29,6 +29,7 @@ function getRelativeOffset(index: number, activeIndex: number, total: number) {
 
 export function HeroPromoCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(() => new Set());
   const [isPaused, setIsPaused] = useState(false);
   const dragStateRef = useRef<DragState | null>(null);
   const lastSwipeAtRef = useRef(0);
@@ -150,6 +151,7 @@ export function HeroPromoCarousel() {
         >
           {heroPromotions.map((promotion, index) => {
             const isActive = index === activeIndex;
+            const isLoaded = loadedImages.has(promotion.id);
             const offset = getRelativeOffset(
               index,
               activeIndex,
@@ -167,14 +169,28 @@ export function HeroPromoCarousel() {
                 key={promotion.id}
                 style={{ "--slide-offset": offset } as CSSProperties}
               >
+                {!isLoaded ? (
+                  <Skeleton className="absolute inset-0 z-10 h-full w-full rounded-none" />
+                ) : null}
                 <Image
                   priority={index === 0}
                   alt={promotion.imageAlt}
-                  className="object-cover"
+                  className={`object-cover transition-opacity duration-300 ${
+                    isLoaded ? "opacity-100" : "opacity-0"
+                  }`}
                   draggable={false}
                   fill
                   sizes="(min-width: 1400px) 1400px, calc(100vw - 2rem)"
                   src={promotion.image}
+                  onLoad={() => {
+                    setLoadedImages((currentImages) => {
+                      const nextImages = new Set(currentImages);
+
+                      nextImages.add(promotion.id);
+
+                      return nextImages;
+                    });
+                  }}
                 />
               </article>
             );

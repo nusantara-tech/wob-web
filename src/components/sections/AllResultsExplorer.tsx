@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 
 import { Icon } from "@/components/common/Icon";
+import { UnifiedResultSkeleton } from "@/components/common/LoadingSkeletons";
 import type { DealItem, DirectoryItem, EventItem } from "@/types/homepage";
 
 type Result =
@@ -22,6 +23,7 @@ type ResultTab = {
 
 const INITIAL_VISIBLE_RESULTS = 6;
 const LOAD_MORE_RESULTS = 6;
+const LOAD_MORE_LOADING_MS = 300;
 
 function FiltersPanel({
   activeTab,
@@ -286,6 +288,7 @@ export function AllResultsExplorer({
   const [activeTabId, setActiveTabId] = useState(initialTabId);
   const [searchQuery, setSearchQuery] = useState("");
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_RESULTS);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   const activeTab =
     resultTabs.find((item) => item.id === activeTabId) ?? resultTabs[0];
@@ -300,15 +303,32 @@ export function AllResultsExplorer({
 
   const visibleResults = filteredResults.slice(0, visibleCount);
   const canLoadMore = visibleResults.length < filteredResults.length;
+  const loadingMoreCount = Math.min(
+    LOAD_MORE_RESULTS,
+    filteredResults.length - visibleResults.length,
+  );
 
   const handleTabChange = (tab: ResultTab) => {
     setActiveTabId(tab.id);
     setVisibleCount(INITIAL_VISIBLE_RESULTS);
+    setIsLoadingMore(false);
   };
 
   const handleSearchChange = (value: string) => {
     setSearchQuery(value);
     setVisibleCount(INITIAL_VISIBLE_RESULTS);
+    setIsLoadingMore(false);
+  };
+
+  const handleLoadMore = () => {
+    setIsLoadingMore(true);
+
+    window.setTimeout(() => {
+      setVisibleCount((currentCount) =>
+        Math.min(currentCount + LOAD_MORE_RESULTS, filteredResults.length),
+      );
+      setIsLoadingMore(false);
+    }, LOAD_MORE_LOADING_MS);
   };
 
   return (
@@ -369,6 +389,11 @@ export function AllResultsExplorer({
                 result={result}
               />
             ))}
+            {isLoadingMore
+              ? Array.from({ length: loadingMoreCount }).map((_, index) => (
+                  <UnifiedResultSkeleton key={`all-result-loading-${index}`} />
+                ))
+              : null}
           </div>
         ) : (
           <div className="rounded-3xl border border-dashed border-slate-300 bg-white px-5 py-12 text-center">
@@ -400,18 +425,12 @@ export function AllResultsExplorer({
           {canLoadMore ? (
             <Button
               className="rounded-xl px-6"
+              isDisabled={isLoadingMore}
               size="md"
               variant="outline"
-              onPress={() =>
-                setVisibleCount((currentCount) =>
-                  Math.min(
-                    currentCount + LOAD_MORE_RESULTS,
-                    filteredResults.length,
-                  ),
-                )
-              }
+              onPress={handleLoadMore}
             >
-              Muat Lebih Banyak
+              {isLoadingMore ? "Memuat..." : "Muat Lebih Banyak"}
               <Icon className="size-4" name="arrowDown" />
             </Button>
           ) : null}

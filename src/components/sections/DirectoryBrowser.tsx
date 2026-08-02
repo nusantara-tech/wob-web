@@ -5,10 +5,12 @@ import { useMemo, useState } from "react";
 
 import { DirectoryCard } from "@/components/common/DirectoryCard";
 import { Icon } from "@/components/common/Icon";
+import { CompactCardSkeleton } from "@/components/common/LoadingSkeletons";
 import type { DirectoryItem } from "@/types/homepage";
 
 const INITIAL_VISIBLE_COUNT = 12;
 const LOAD_MORE_COUNT = 6;
+const LOAD_MORE_LOADING_MS = 300;
 
 interface DirectoryBrowserProps {
   categories: string[];
@@ -27,6 +29,7 @@ export function DirectoryBrowser({
   const [activeCategory, setActiveCategory] = useState(safeInitialCategory);
   const [searchQuery, setSearchQuery] = useState("");
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_COUNT);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   const filteredItems = useMemo(() => {
     const normalizedQuery = searchQuery.trim().toLowerCase();
@@ -47,15 +50,32 @@ export function DirectoryBrowser({
 
   const visibleItems = filteredItems.slice(0, visibleCount);
   const hasMore = visibleCount < filteredItems.length;
+  const loadingMoreCount = Math.min(
+    LOAD_MORE_COUNT,
+    filteredItems.length - visibleItems.length,
+  );
 
   const handleCategoryPress = (category: string) => {
     setActiveCategory(category);
     setVisibleCount(INITIAL_VISIBLE_COUNT);
+    setIsLoadingMore(false);
   };
 
   const handleSearchChange = (value: string) => {
     setSearchQuery(value);
     setVisibleCount(INITIAL_VISIBLE_COUNT);
+    setIsLoadingMore(false);
+  };
+
+  const handleLoadMore = () => {
+    setIsLoadingMore(true);
+
+    window.setTimeout(() => {
+      setVisibleCount((currentCount) =>
+        Math.min(currentCount + LOAD_MORE_COUNT, filteredItems.length),
+      );
+      setIsLoadingMore(false);
+    }, LOAD_MORE_LOADING_MS);
   };
 
   return (
@@ -108,6 +128,11 @@ export function DirectoryBrowser({
           {visibleItems.map((item) => (
             <DirectoryCard item={item} key={item.id} />
           ))}
+          {isLoadingMore
+            ? Array.from({ length: loadingMoreCount }).map((_, index) => (
+                <CompactCardSkeleton key={`directory-loading-${index}`} />
+              ))
+            : null}
         </div>
       ) : (
         <div className="rounded-3xl border border-dashed border-slate-300 bg-white px-5 py-12 text-center">
@@ -139,13 +164,12 @@ export function DirectoryBrowser({
         {hasMore ? (
             <Button
               className="rounded-xl px-6"
+              isDisabled={isLoadingMore}
               size="md"
               variant="outline"
-              onPress={() =>
-                setVisibleCount((current) => current + LOAD_MORE_COUNT)
-              }
+              onPress={handleLoadMore}
             >
-              Muat Lebih Banyak
+              {isLoadingMore ? "Memuat..." : "Muat Lebih Banyak"}
               <Icon className="size-4" name="arrowDown" />
             </Button>
         ) : null}

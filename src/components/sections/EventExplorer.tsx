@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 
 import { EventCard } from "@/components/common/EventCard";
 import { Icon } from "@/components/common/Icon";
+import { CompactCardSkeleton } from "@/components/common/LoadingSkeletons";
 import type { EventItem } from "@/types/homepage";
 
 interface EventExplorerProps {
@@ -23,15 +24,18 @@ const filterCategoryMap: Record<string, string[]> = {
 export const EVENT_FILTER_CHANGE_EVENT = "wob:event-filter-change";
 const INITIAL_VISIBLE_EVENTS = 18;
 const LOAD_MORE_EVENTS = 6;
+const LOAD_MORE_LOADING_MS = 300;
 
 export function EventExplorer({ events, filters }: EventExplorerProps) {
   const [activeFilter, setActiveFilter] = useState(filters[0]);
   const [searchQuery, setSearchQuery] = useState("");
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_EVENTS);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   const updateActiveFilter = (filter: string) => {
     setActiveFilter(filter);
     setVisibleCount(INITIAL_VISIBLE_EVENTS);
+    setIsLoadingMore(false);
   };
 
   useEffect(() => {
@@ -76,10 +80,26 @@ export function EventExplorer({ events, filters }: EventExplorerProps) {
 
   const visibleEvents = filteredEvents.slice(0, visibleCount);
   const canLoadMore = visibleEvents.length < filteredEvents.length;
+  const loadingMoreCount = Math.min(
+    LOAD_MORE_EVENTS,
+    filteredEvents.length - visibleEvents.length,
+  );
 
   const handleSearchChange = (value: string) => {
     setSearchQuery(value);
     setVisibleCount(INITIAL_VISIBLE_EVENTS);
+    setIsLoadingMore(false);
+  };
+
+  const handleLoadMore = () => {
+    setIsLoadingMore(true);
+
+    window.setTimeout(() => {
+      setVisibleCount((currentCount) =>
+        Math.min(currentCount + LOAD_MORE_EVENTS, filteredEvents.length),
+      );
+      setIsLoadingMore(false);
+    }, LOAD_MORE_LOADING_MS);
   };
 
   return (
@@ -132,6 +152,11 @@ export function EventExplorer({ events, filters }: EventExplorerProps) {
           {visibleEvents.map((event) => (
             <EventCard event={event} key={event.id} />
           ))}
+          {isLoadingMore
+            ? Array.from({ length: loadingMoreCount }).map((_, index) => (
+                <CompactCardSkeleton key={`event-loading-${index}`} />
+              ))
+            : null}
         </div>
       ) : (
         <div className="rounded-3xl border border-dashed border-slate-300 bg-white px-5 py-12 text-center">
@@ -163,15 +188,12 @@ export function EventExplorer({ events, filters }: EventExplorerProps) {
         {canLoadMore ? (
           <Button
             className="rounded-xl px-6"
+            isDisabled={isLoadingMore}
             size="md"
             variant="outline"
-            onPress={() =>
-              setVisibleCount((currentCount) =>
-                Math.min(currentCount + LOAD_MORE_EVENTS, filteredEvents.length),
-              )
-            }
+            onPress={handleLoadMore}
           >
-            Muat Lebih Banyak
+            {isLoadingMore ? "Memuat..." : "Muat Lebih Banyak"}
             <Icon className="size-4" name="arrowDown" />
           </Button>
         ) : null}

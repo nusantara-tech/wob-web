@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 
 import { DealCard } from "@/components/common/DealCard";
 import { Icon } from "@/components/common/Icon";
+import { DealCardSkeleton } from "@/components/common/LoadingSkeletons";
 import type { DealItem } from "@/types/homepage";
 
 interface DealsExplorerProps {
@@ -14,6 +15,7 @@ interface DealsExplorerProps {
 
 const INITIAL_VISIBLE_DEALS = 8;
 const LOAD_MORE_DEALS = 4;
+const LOAD_MORE_LOADING_MS = 300;
 
 const filterMatchers: Record<string, string[]> = {
   "All Deals": [],
@@ -28,6 +30,7 @@ export function DealsExplorer({ deals, filters }: DealsExplorerProps) {
   const [activeFilter, setActiveFilter] = useState(filters[0]);
   const [searchQuery, setSearchQuery] = useState("");
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_DEALS);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   const filteredDeals = useMemo(() => {
     const filterTerms = filterMatchers[activeFilter] ?? [];
@@ -58,15 +61,32 @@ export function DealsExplorer({ deals, filters }: DealsExplorerProps) {
 
   const visibleDeals = filteredDeals.slice(0, visibleCount);
   const canLoadMore = visibleDeals.length < filteredDeals.length;
+  const loadingMoreCount = Math.min(
+    LOAD_MORE_DEALS,
+    filteredDeals.length - visibleDeals.length,
+  );
 
   const updateActiveFilter = (filter: string) => {
     setActiveFilter(filter);
     setVisibleCount(INITIAL_VISIBLE_DEALS);
+    setIsLoadingMore(false);
   };
 
   const updateSearchQuery = (value: string) => {
     setSearchQuery(value);
     setVisibleCount(INITIAL_VISIBLE_DEALS);
+    setIsLoadingMore(false);
+  };
+
+  const handleLoadMore = () => {
+    setIsLoadingMore(true);
+
+    window.setTimeout(() => {
+      setVisibleCount((currentCount) =>
+        Math.min(currentCount + LOAD_MORE_DEALS, filteredDeals.length),
+      );
+      setIsLoadingMore(false);
+    }, LOAD_MORE_LOADING_MS);
   };
 
   return (
@@ -119,6 +139,11 @@ export function DealsExplorer({ deals, filters }: DealsExplorerProps) {
           {visibleDeals.map((deal) => (
             <DealCard deal={deal} key={deal.id} />
           ))}
+          {isLoadingMore
+            ? Array.from({ length: loadingMoreCount }).map((_, index) => (
+                <DealCardSkeleton key={`deal-loading-${index}`} />
+              ))
+            : null}
         </div>
       ) : (
         <div className="rounded-3xl border border-dashed border-orange-300 bg-white px-5 py-12 text-center">
@@ -150,15 +175,12 @@ export function DealsExplorer({ deals, filters }: DealsExplorerProps) {
         {canLoadMore ? (
           <Button
             className="rounded-xl border-orange-200 px-6 text-orange-700 hover:bg-orange-50"
+            isDisabled={isLoadingMore}
             size="md"
             variant="outline"
-            onPress={() =>
-              setVisibleCount((currentCount) =>
-                Math.min(currentCount + LOAD_MORE_DEALS, filteredDeals.length),
-              )
-            }
+            onPress={handleLoadMore}
           >
-            Muat Lebih Banyak
+            {isLoadingMore ? "Memuat..." : "Muat Lebih Banyak"}
             <Icon className="size-4" name="arrowDown" />
           </Button>
         ) : null}
