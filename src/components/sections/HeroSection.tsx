@@ -62,6 +62,7 @@ export function HeroSection() {
                 variant="primary"
               >
                 <Icon className="size-4 sm:hidden" name="search" />
+                <Icon className="size-4 hidden sm:inline" name="search" />
                 <span className="hidden sm:inline">Cari</span>
               </Button>
             </SearchField.Group>
