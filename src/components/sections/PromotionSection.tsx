@@ -12,6 +12,7 @@ export function PromotionSection() {
           description="Limited-time offers for the biggest Bali fans."
           title="Hot Deals"
           linkLabel="View All"
+          linkHref="/deals"
         />
         <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
           {featuredDeals.map((deal) => (

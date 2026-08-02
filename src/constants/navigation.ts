@@ -9,6 +9,6 @@ export const bottomNavigation: {
   { label: "Home", href: "/", icon: "home" },
   { label: "Events", href: "/events", icon: "calendar", activePath: "/events" },
   { label: "Explore", href: "/all", icon: "compass", activePath: "/all" },
-  { label: "Deals", href: "#deals", icon: "ticket" },
+  { label: "Deals", href: "/deals", icon: "ticket", activePath: "/deals" },
   { label: "Profile", href: "#top", icon: "user" },
 ];

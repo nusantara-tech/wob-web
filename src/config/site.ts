@@ -23,7 +23,7 @@ export const siteConfig = {
     { label: "Home", href: "/", icon: "home" },
     { label: "Events", href: "/events", icon: "calendar" },
     { label: "Directory", href: "/directory", icon: "compass" },
-    { label: "Hot Deals", href: "#deals", icon: "ticket" },
+    { label: "Hot Deals", href: "/deals", icon: "ticket" },
     {
       label: "What's on Bali?",
       href: "/all",
