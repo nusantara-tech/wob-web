@@ -104,7 +104,7 @@ export function EventExplorer({ events, filters }: EventExplorerProps) {
 
   return (
     <>
-      <div className="sticky top-16 z-30 mb-8 bg-background/95 pb-3 pt-1 backdrop-blur">
+      <div className="sticky top-16 z-30 mb-8 pb-3 pt-1 backdrop-blur">
         <SearchField
           aria-label="Search events"
           fullWidth

@@ -33,7 +33,7 @@ export default function DealsPage() {
                                 <Icon className="size-3.5" name="ticket"/>
                                 Hot Deals
                             </p>
-                            <h1 className="font-display text-3xl font-black tracking-tight text-ink sm:text-4xl">
+                            <h1 className="font-display text-3xl font-blod tracking-tight text-ink md:text-4xl">
                                 Limited Bali offers, updated daily
                             </h1>
                             <p className="mt-2 max-w-2xl text-sm leading-6 text-copy">

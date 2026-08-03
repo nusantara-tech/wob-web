@@ -22,13 +22,6 @@ export function AppHeader() {
     return () => window.removeEventListener("scroll", updateHeaderState);
   }, []);
 
-  const handleJoinPartnerPress = () => {
-    setIsMenuOpen(false);
-    document
-      .getElementById("partner-program")
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
   const renderNavigationItemContent = (
     item: (typeof siteConfig.navigation)[number],
   ) => (
@@ -88,28 +81,25 @@ export function AppHeader() {
           </div>
         </div>
         <div className="flex items-center gap-1.5 sm:gap-2">
-          <Button
+          <Link
             className={clsx(
-              "hidden rounded-full px-4 font-bold sm:inline-flex",
+              "hidden min-h-9 items-center gap-2 rounded-full px-4 text-sm font-bold transition-all sm:inline-flex",
               isScrolled
-                ? "border border-blue-100 bg-blue-50 text-brand hover:bg-blue-100"
-                : "bg-brand text-white shadow-sm hover:bg-brand/90",
+                ? "border border-blue-100 bg-blue-50 text-brand shadow-sm shadow-blue-100/50 hover:border-blue-200 hover:bg-blue-100"
+                : "bg-white/85 text-brand shadow-sm ring-1 ring-white/70 backdrop-blur hover:bg-white",
             )}
-            size="sm"
-            variant={isScrolled ? "ghost" : "primary"}
-            onPress={handleJoinPartnerPress}
+            href="/#partner-program"
           >
             <Icon className="size-4" name="sparkles" />
             Join Partner
-          </Button>
-          <Button
-            className="hidden rounded-full px-4 sm:inline-flex"
-            size="sm"
-            variant="primary"
+          </Link>
+          <Link
+            className="hidden min-h-9 items-center gap-2 rounded-full bg-brand px-4 text-sm font-bold text-white shadow-sm transition-all hover:bg-brand/90 hover:shadow-md sm:inline-flex"
+            href="/login"
           >
             <Icon className="size-4" name="user" />
             Login
-          </Button>
+          </Link>
           <Button
             isIconOnly
             aria-label="Open notifications"
@@ -171,19 +161,22 @@ export function AppHeader() {
               </nav>
             </Drawer.Body>
             <Drawer.Footer className="flex flex-col gap-2">
-              <Button
-                className="w-full rounded-full font-bold"
-                size="sm"
-                variant="primary"
-                onPress={handleJoinPartnerPress}
+              <Link
+                className="flex min-h-10 w-full items-center justify-center gap-2 rounded-full bg-brand px-4 text-sm font-bold text-white shadow-sm transition-colors hover:bg-brand/90"
+                href="/#partner-program"
+                onClick={() => setIsMenuOpen(false)}
               >
                 <Icon className="size-4" name="sparkles" />
                 Join Partner
-              </Button>
-              <Button className="w-full rounded-full" size="sm" variant="outline">
+              </Link>
+              <Link
+                className="flex min-h-10 w-full items-center justify-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 text-sm font-bold text-brand transition-colors hover:bg-blue-100"
+                href="/login"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 <Icon className="size-4" name="user" />
                 Login
-              </Button>
+              </Link>
             </Drawer.Footer>
           </Drawer.Dialog>
         </Drawer.Content>
