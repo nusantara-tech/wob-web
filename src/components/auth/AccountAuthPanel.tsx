@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Card, Form, Input, Label, TextField } from "@heroui/react";
+import { Button, Form, Input, Label, TextField } from "@heroui/react";
 
 import { Icon } from "@/components/common/Icon";
 
@@ -10,8 +10,8 @@ export function AccountAuthPanel() {
   const isRegister = mode === "register";
 
   return (
-    <Card className="border border-slate-200/80 bg-white shadow-sm">
-      <Card.Header className="pb-2">
+    <>
+      <div className="border-b border-slate-100 px-4 pb-6 pt-4 sm:px-6 sm:pt-5">
         <div className="mb-3 flex items-center justify-between gap-4">
           <div
             className={`inline-flex size-12 items-center justify-center rounded-2xl ${isRegister ? "bg-gold text-ink shadow-lg shadow-gold/20" : "bg-brand text-white shadow-lg shadow-brand/20"}`}
@@ -22,16 +22,16 @@ export function AccountAuthPanel() {
             {isRegister ? "Step 1 of 1" : "Member access"}
           </span>
         </div>
-        <Card.Title className="text-2xl font-bold text-ink">
+        <h2 className="text-2xl font-bold text-ink">
           {isRegister ? "Create your account" : "Welcome back"}
-        </Card.Title>
-        <Card.Description className="text-sm leading-6 text-copy">
+        </h2>
+        <p className="text-sm leading-6 text-copy">
           {isRegister
             ? "Daftar gratis dan mulai susun rencana Bali kamu."
             : "Masuk untuk menyimpan event dan deals favoritmu."}
-        </Card.Description>
-      </Card.Header>
-      <Card.Content>
+        </p>
+      </div>
+      <div className="px-4 pb-5 pt-6 sm:px-6 sm:pb-6">
         <div className="relative overflow-hidden">
           <div
             key={mode}
@@ -124,7 +124,7 @@ export function AccountAuthPanel() {
             {isRegister ? "Login di sini" : "Register sekarang"}
           </Button>
         </div>
-      </Card.Content>
-    </Card>
+      </div>
+    </>
   );
 }

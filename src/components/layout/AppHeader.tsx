@@ -28,10 +28,7 @@ export function AppHeader() {
     <>
       {item.icon ? (
         <Icon
-          className={clsx(
-            "size-4 shrink-0 text-current",
-            item.iconClassName,
-          )}
+          className={clsx("size-4 shrink-0 text-current", item.iconClassName)}
           name={item.icon}
         />
       ) : null}
@@ -52,7 +49,11 @@ export function AppHeader() {
         className="page-container flex h-16 items-center justify-between gap-6"
       >
         <div className="flex items-center gap-10">
-          <Link aria-label={siteConfig.name} className="flex items-center" href="/">
+          <Link
+            aria-label={siteConfig.name}
+            className="flex items-center"
+            href="/"
+          >
             <Image
               alt={siteConfig.logo.alt}
               className={siteConfig.logo.invertedClassName}
@@ -88,7 +89,7 @@ export function AppHeader() {
                 ? "border border-blue-100 bg-blue-50 text-brand shadow-sm shadow-blue-100/50 hover:border-blue-200 hover:bg-blue-100"
                 : "bg-white/85 text-brand shadow-sm ring-1 ring-white/70 backdrop-blur hover:bg-white",
             )}
-            href="/#partner-program"
+            href="/partner/join"
           >
             <Icon className="size-4" name="sparkles" />
             Join Partner
@@ -163,7 +164,7 @@ export function AppHeader() {
             <Drawer.Footer className="flex flex-col gap-2">
               <Link
                 className="flex min-h-10 w-full items-center justify-center gap-2 rounded-full bg-brand px-4 text-sm font-bold text-white shadow-sm transition-colors hover:bg-brand/90"
-                href="/#partner-program"
+                href="/partner/join"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <Icon className="size-4" name="sparkles" />

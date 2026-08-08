@@ -15,6 +15,52 @@ Format mengikuti [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) dan ve
 
 ## [Unreleased]
 
+## [0.8.6] - 2026-08-08
+
+### Changed
+
+- Memindahkan wrapper `Card` ke halaman login dan menghapus nested card dari `AccountAuthPanel` agar struktur UI lebih bersih.
+
+## [0.8.5] - 2026-08-08
+
+### Changed
+
+- Memperbaiki wrapper panel autentikasi dan CTA partner di halaman `/login` agar lebih rapi serta nyaman digunakan pada mobile.
+
+## [0.8.4] - 2026-08-08
+
+### Changed
+
+- Memperbaiki UI/UX card form partner dengan typography responsif, touch target input yang lebih nyaman, spacing mobile, dan CTA yang lebih jelas.
+
+## [0.8.3] - 2026-08-08
+
+### Changed
+
+- Mengoptimalkan UI/UX halaman `/partner/join` dengan rasio desktop 60:40, card form yang lebih terarah, dan menyembunyikan section informasi kiri pada mobile.
+
+## [0.8.2] - 2026-08-08
+
+### Changed
+
+- Menyesuaikan rasio section kiri dan panel autentikasi kanan halaman `/login` menjadi sekitar 60:40 pada desktop.
+
+## [0.8.1] - 2026-08-08
+
+### Fixed
+
+- Memperbaiki error Server/Client Component pada CTA Join Now dengan mengganti penggunaan `as={Link}` menjadi link navigasi langsung.
+
+## [0.8.0] - 2026-08-08
+
+### Added
+
+- Menambahkan halaman onboarding partner di `/partner/join` dengan form pengajuan dan informasi manfaat partner.
+
+### Changed
+
+- Mengarahkan CTA Join Partner dari header dan halaman login ke `/partner/join`.
+
 ## [0.7.0] - 2026-08-08
 
 ### Added

@@ -44,7 +44,7 @@ export default function LoginPage() {
           <div className="absolute bottom-0 left-1/2 size-80 -translate-x-1/2 rounded-full bg-blue-200/30 blur-3xl" />
         </div>
 
-        <div className="page-container relative grid gap-10 lg:grid-cols-[minmax(0,8fr)_minmax(360px,3fr)] lg:items-center">
+        <div className="page-container relative grid gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(360px,2fr)] lg:items-center">
           <section className="hidden lg:block">
             <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand/15 bg-white/80 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-brand shadow-sm backdrop-blur">
               <Icon className="size-3.5" name="shield" />
@@ -93,16 +93,24 @@ export default function LoginPage() {
             </div>
           </section>
 
-          <section className="rounded-[2rem] border border-white/70 bg-white/65 p-3 shadow-[0_30px_90px_rgb(15_23_42_/_14%)] backdrop-blur-xl">
+          <Card className="rounded-[1.5rem] border border-white/80 bg-white/70 p-2 shadow-[0_24px_70px_rgb(15_23_42_/_12%)] backdrop-blur-xl sm:rounded-[2rem] sm:p-3">
             <AccountAuthPanel />
 
-            <p className="px-4 py-5 text-center text-sm leading-6 text-copy">
-              Butuh akun partner untuk venue atau brand?{" "}
-              <Link className="font-bold text-brand" href="/#partner-program">
+            <div className="mx-1 mt-2 flex flex-col items-center gap-2 rounded-2xl border border-brand/10 bg-brand/[0.04] px-4 py-4 text-center sm:flex-row sm:justify-center sm:gap-1 sm:py-3">
+              <p className="text-sm leading-6 text-copy">
+                Punya venue atau brand?
+              </p>
+              <Link
+                className="inline-flex min-h-10 items-center rounded-full px-3 font-bold text-brand transition hover:bg-brand/10 hover:text-brand-dark"
+                href="/partner/join"
+              >
                 Join Partner Program
+                <span aria-hidden="true" className="ml-1">
+                  →
+                </span>
               </Link>
-            </p>
-          </section>
+            </div>
+          </Card>
         </div>
       </main>
     </>

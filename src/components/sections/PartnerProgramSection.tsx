@@ -1,4 +1,4 @@
-import { Button } from "@heroui/react";
+import Link from "next/link";
 
 import { Icon } from "@/components/common/Icon";
 
@@ -33,10 +33,13 @@ export function PartnerProgramSection() {
               </p>
 
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <Button className="h-11 rounded-full bg-white px-6 font-bold text-ink hover:bg-white/90">
+                <Link
+                  className="inline-flex h-11 items-center gap-2 rounded-full bg-white px-6 font-bold text-ink hover:bg-white/90"
+                  href="/partner/join"
+                >
                   JOIN NOW
                   <Icon className="size-4" name="arrowRight" />
-                </Button>
+                </Link>
                 <p className="text-xs font-medium text-white/55">
                   No setup friction. Curated onboarding for qualified partners.
                 </p>
