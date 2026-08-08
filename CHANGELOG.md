@@ -15,6 +15,40 @@ Format mengikuti [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) dan ve
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-08-08
+
+### Added
+
+- Menambahkan tombol Login with Google dan Register with Google pada panel autentikasi.
+
+## [0.6.2] - 2026-08-08
+
+### Changed
+
+- Menyembunyikan section informasi kiri pada tampilan mobile agar form autentikasi menjadi fokus utama.
+
+## [0.6.1] - 2026-08-08
+
+### Changed
+
+- Menyesuaikan proporsi section kiri dan kanan halaman `/login` menjadi sekitar 80:30 pada desktop.
+
+## [0.6.0] - 2026-08-08
+
+### Changed
+
+- Mengubah panel autentikasi `/login` menjadi form login default dengan toggle UX untuk menampilkan form register secara interaktif.
+
+## [0.5.0] - 2026-08-04
+
+### Added
+
+- Menambahkan form register pada halaman `/login`.
+
+### Changed
+
+- Mempercantik tampilan halaman login dengan background dekoratif, trust signals, benefit cards, dan layout form login/register baru.
+
 ## [0.4.1] - 2026-08-02
 
 ### Changed
