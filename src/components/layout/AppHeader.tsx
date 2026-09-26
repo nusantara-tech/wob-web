@@ -7,11 +7,13 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { Icon } from "@/components/common/Icon";
-import { siteConfig } from "@/config/site";
+import { languageConfig, siteConfig } from "@/config/site";
+import { useLanguage } from "@/app/providers";
 
 export function AppHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const updateHeaderState = () => setIsScrolled(window.scrollY > 12);
@@ -32,7 +34,7 @@ export function AppHeader() {
           name={item.icon}
         />
       ) : null}
-      <span className={item.labelClassName}>{item.label}</span>
+      <span className={item.labelClassName}>{t[item.key]}</span>
     </>
   );
 
@@ -82,6 +84,27 @@ export function AppHeader() {
           </div>
         </div>
         <div className="flex items-center gap-1.5 sm:gap-2">
+          <div
+            aria-label={t.switchLanguage}
+            className="hidden items-center rounded-full border border-slate-200/80 bg-white/75 p-1 shadow-sm sm:flex"
+            role="group"
+          >
+            {languageConfig.options.map((option) => (
+              <button
+                className={clsx(
+                  "min-h-7 rounded-full px-2 text-[11px] font-black transition",
+                  language === option
+                    ? "bg-brand text-white shadow-sm"
+                    : "text-slate-500 hover:bg-slate-100 hover:text-brand",
+                )}
+                key={option}
+                onClick={() => setLanguage(option)}
+                type="button"
+              >
+                {languageConfig.labels[option]}
+              </button>
+            ))}
+          </div>
           <Link
             className={clsx(
               "hidden min-h-9 items-center gap-2 rounded-full px-4 text-sm font-bold transition-all sm:inline-flex",
@@ -92,14 +115,14 @@ export function AppHeader() {
             href="/partner/join"
           >
             <Icon className="size-4" name="sparkles" />
-            Join Partner
+            {t.joinPartner}
           </Link>
           <Link
             className="hidden min-h-9 items-center gap-2 rounded-full bg-brand px-4 text-sm font-bold text-white shadow-sm transition-all hover:bg-brand/90 hover:shadow-md sm:inline-flex"
             href="/login"
           >
             <Icon className="size-4" name="user" />
-            Login
+            {t.login}
           </Link>
           <Button
             isIconOnly
@@ -141,7 +164,7 @@ export function AppHeader() {
             <Drawer.CloseTrigger className="text-slate-500 hover:text-brand" />
             <Drawer.Header>
               <Drawer.Heading className="text-base font-bold">
-                Menu
+                {t.menu}
               </Drawer.Heading>
             </Drawer.Header>
             <Drawer.Body>
@@ -168,7 +191,7 @@ export function AppHeader() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 <Icon className="size-4" name="sparkles" />
-                Join Partner
+                {t.joinPartner}
               </Link>
               <Link
                 className="flex min-h-10 w-full items-center justify-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 text-sm font-bold text-brand transition-colors hover:bg-blue-100"
@@ -176,7 +199,7 @@ export function AppHeader() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 <Icon className="size-4" name="user" />
-                Login
+                {t.login}
               </Link>
             </Drawer.Footer>
           </Drawer.Dialog>

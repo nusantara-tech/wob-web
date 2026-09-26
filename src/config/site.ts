@@ -1,6 +1,7 @@
 import type { IconName } from "@/components/common/Icon";
 
 type NavigationItem = {
+  key: keyof SiteTranslations;
   label: string;
   href: string;
   icon?: IconName;
@@ -8,6 +9,40 @@ type NavigationItem = {
   labelClassName?: string;
   linkClassName?: string;
 };
+
+export type Language = "id" | "en";
+
+export const languageConfig = {
+  default: "id" as Language,
+  options: ["id", "en"] as const,
+  labels: { id: "ID", en: "EN" },
+  translations: {
+    id: {
+      home: "Home",
+      events: "Events",
+      directory: "Directory",
+      deals: "Hot Deals",
+      all: "What's on Bali?",
+      joinPartner: "Join Partner",
+      login: "Login",
+      menu: "Menu",
+      switchLanguage: "Ganti bahasa",
+    },
+    en: {
+      home: "Home",
+      events: "Events",
+      directory: "Directory",
+      deals: "Hot Deals",
+      all: "What's on Bali?",
+      joinPartner: "Join Partner",
+      login: "Login",
+      menu: "Menu",
+      switchLanguage: "Change language",
+    },
+  },
+} as const;
+
+export type SiteTranslations = (typeof languageConfig.translations)[Language];
 
 export const siteConfig = {
   name: "What's On Bali",
@@ -20,11 +55,17 @@ export const siteConfig = {
     invertedClassName: "h-10 w-auto brightness-100 md:h-11",
   },
   navigation: [
-    { label: "Home", href: "/", icon: "home" },
-    { label: "Events", href: "/events", icon: "calendar" },
-    { label: "Directory", href: "/directory", icon: "compass" },
-    { label: "Hot Deals", href: "/deals", icon: "ticket" },
+    { key: "home", label: "Home", href: "/", icon: "home" },
+    { key: "events", label: "Events", href: "/events", icon: "calendar" },
     {
+      key: "directory",
+      label: "Directory",
+      href: "/directory",
+      icon: "compass",
+    },
+    { key: "deals", label: "Hot Deals", href: "/deals", icon: "ticket" },
+    {
+      key: "all",
       label: "What's on Bali?",
       href: "/all",
       icon: "sparkles",

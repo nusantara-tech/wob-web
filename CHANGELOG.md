@@ -15,6 +15,13 @@ Format mengikuti [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) dan ve
 
 ## [Unreleased]
 
+## [0.9.0] - 2026-08-08
+
+### Added
+
+- Menambahkan switch bahasa ID/EN di header dengan penyimpanan pilihan bahasa di local storage.
+- Menambahkan konfigurasi terpusat `languageConfig` di `src/config/site.ts` dan provider bahasa untuk digunakan lintas halaman.
+
 ## [0.8.6] - 2026-08-08
 
 ### Changed
